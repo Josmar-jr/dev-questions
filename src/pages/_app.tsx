@@ -1,6 +1,6 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import { Global } from '@emotion/react';
-import { AuthProvider } from 'contexts/auth';
+import { AuthProvider } from 'contexts/AuthContext';
 import { global } from 'styles/global';
 import { theme } from '../styles/theme';
 

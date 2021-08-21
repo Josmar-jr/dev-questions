@@ -2,8 +2,6 @@ export const HEADING_THEME_KEY = 'Heading';
 
 export const headingStyles = {
   baseStyle: {
-    color: 'white',
-    fontWeight: 'bold',
     fontFamily: 'Poppins',
   },
   sizes: {
@@ -11,7 +9,7 @@ export const headingStyles = {
       fontSize: '2.25rem',
     },
     md: {
-      fontSize: '1.8rem',
+      fontSize: '1.5rem',
     },
     sm: {
       fontSize: '1.5rem',
@@ -20,7 +18,20 @@ export const headingStyles = {
       fontSize: '1.2rem',
     },
   },
+  variants: {
+    h1: {
+      size: 'lg',
+      color: 'white',
+      fontWeight: 'bold',
+    },
+    h2: {
+      size: 'md',
+      color: 'dark',
+      fontWeight: 'bold',
+    },
+  },
   defaultProps: {
     size: 'lg',
+    variant: 'h1',
   },
 };

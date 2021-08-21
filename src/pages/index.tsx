@@ -15,7 +15,7 @@ import { Heading } from 'components/Base/Heading';
 import { useAuth } from 'hooks/useAuth';
 
 export default function Home() {
-  const { signInWithGithub, user } = useAuth();
+  const { signInWithGithub, user, signOut } = useAuth();
 
   function handleCreateRoom() {
     if (!user) {
@@ -73,6 +73,7 @@ export default function Home() {
           <Box textAlign="center" color="gray.200" fontSize=".875rem" mx="2">
             ou entre em uma sala
           </Box>
+          <Button onClick={signOut}>Logout</Button>
           <FormControl id="text">
             <Input
               type="text"
