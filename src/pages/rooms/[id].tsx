@@ -1,7 +1,11 @@
-import { Flex } from '@chakra-ui/react';
-import { Heading } from 'components/Base/Heading';
+import { useRouter } from 'next/router';
 import { GetStaticPaths, GetStaticProps } from 'next';
+
 import { supabase } from 'services/supabase';
+
+import { Flex } from '@chakra-ui/react';
+
+import { Heading } from 'components/Base/Heading';
 
 type RoomProps = {
   room: {
@@ -12,7 +16,10 @@ type RoomProps = {
 };
 
 export default function Room({ room }: RoomProps) {
-  console.log(room);
+  const router = useRouter();
+
+  if (router.isFallback) return null;
+
   return (
     <Flex>
       <Heading color="red">id da sala{room.id}</Heading>
@@ -26,9 +33,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
     .select('*')
     .order('created_at', { ascending: true });
 
-  const paths = response.body.map((room) => ({
+  const paths = response.body.map(({ id }) => ({
     params: {
-      id: room.id,
+      id,
     },
   }));
 
@@ -43,6 +50,8 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     .from('rooms')
     .select('*')
     .eq('id', `${ctx.params.id}`);
+
+  if (response.body[0]) return { notFound: true };
 
   return {
     props: {
